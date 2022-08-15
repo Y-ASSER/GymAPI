@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+ GymAPI.Data;
 using GymAPI.Models;
-using GymAPI.Data;
+using GymAPI.Requests;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymAPI.Controllers
 {
@@ -10,15 +12,15 @@ namespace GymAPI.Controllers
 
     public class TrainerController : ControllerBase
     {
-        private readonly ITrainerRepository _trainerRepository;
+        private readonly ITrainerRepository_trainerRepository;
 
         public TrainerController(ITrainerRepository trainerRepository)
         {
-            _trainerRepository = trainerRepository;
+            _trainerRepository=trainerRepository;
         }
 
 
-        [HttpGet]
+       [HttpGet]
         public ActionResult<IEnumerable<Trainer>> Get()
         {
             var Trainer = _trainerRepository.GetAllTrainer();
@@ -27,30 +29,30 @@ namespace GymAPI.Controllers
 
         // GET api/<TrainerController>/5
         [HttpGet("{id}")]
-        public Trainer Get(int id)
+        public Trainer Get(int Id)
         {
-            return _trainerRepository.GetTrainerById(id);
+            return _trainerRepository.GetTrainerById(Id);
         }
 
         // POST api/<TrainerController>
         [HttpPost]
-        public Trainer Post(string name, int time_experience)
+        public Trainer Post(string name,int Time_experience)
         {
-            return _trainerRepository.AddTrainer(name, time_experience);
+            return _trainerRepository.AddTrainer(name, Time_experience);
         }
 
         // PUT api/<TrainerController>/5
-        [HttpPut("{id}")]
-        public Trainer Put(int id, string name, int time_experience)
+        [HttpPut("{Id}")]
+        public Trainer Put(int Id, string name,int Time_experience)
         {
-            return _trainerRepository.UpdateTrainer(id, name, time_experience);
+            return _trainerRepository.UpdateTrainer(Id, name, Time_experience);
         }
 
         // DELETE api/<TrainerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{Id}")]
+        public voId Delete(int Id)
         {
-            _trainerRepository.Delete(id);
+            _trainerRepository.Delete(Id);
         }
     }
 }
