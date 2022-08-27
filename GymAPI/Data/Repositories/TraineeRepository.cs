@@ -1,41 +1,44 @@
-﻿using GymAPI.Models;
+using GymAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymAPI.Data
 {
     public class TraineeRepository : ITraineeRepository
     {
-        public Trainee AddTrainee(string Name, int Age, int Height, int Weight, Trainer trainer)
+        private readonly AppDbContext _context;
+
+        private readonly DbSet<Trainee> _trainee;
+        public TraineeRepository(AppDbContext context)
         {
-            Trainee trainee = new(Name, Age, Weight, Height, trainer);
-            Add(trainee);
-            return trainee;
-        }
-        public void Delete(int Id)
-        {
-            if (Id != null)
-                Remove(Trainee);
+            _context = context;
+            _trainee = _context.Set<Trainee>();
         }
 
-        public List<Trainee> GetAllTrainee()
+        public async Task<Trainee> AddTrainee(Trainee trainee)
         {
-            throw new NotImplementedException();
+            var createdEntity = await _trainee.AddAsync(trainee);
+            await _context.SaveChangesAsync();
+            return createdEntity.Entity;
         }
 
-        public Trainee GetTraineeById(int Id)
+
+        public async Task Delete(int Id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _trainee.Remove(await _trainee.FindAsync(new object?[] { Id }, cancellationToken: cancellationToken));
         }
 
-        public Trainee PostTrainee(int Id, string Name, int Age, int Height, int Weight, Trainer trainer)
+
+        public async Task<List<Trainee>> GetAllTrainee() => await _trainee.ToListAsync();
+
+        public async Task<Trainee> GetTraineeById(int Id, CancellationToken cancellationToken) => await _trainee.FindAsync(new object?[] { Id }, cancellationToken: cancellationToken);
+
+        public async Task<Trainee> UpdateTrainee(Trainee trainee)
         {
-            throw new NotImplementedException();
+            var updatedEntity = _trainee.Update(trainee);
+            await _context.SaveChangesAsync();
+            return updatedEntity.Entity;
         }
 
-        public Trainee UpdateTrainee(int Id, string Name, int Age, int Height, int Weight, Trainer trainer)
-        {
-            var updatedTrainee = Trainee.Update(name, Age, Weight, Height, trainer);
-            return updatedTrainee;
-        }
 
     }
 }

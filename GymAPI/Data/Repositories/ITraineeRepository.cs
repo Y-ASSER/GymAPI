@@ -4,10 +4,10 @@ namespace GymAPI.Data
 {
     public interface ITraineeRepository
     {
-        List<Trainee> GetAllTrainee();
-        Trainee AddTrainee(string Name, int Age, int Height, int Weight, Trainer trainer);
-        Trainee PostTrainee(int Id, string Name, int Age, int Height, int Weight, Trainer trainer);
-        Trainee UpdateTrainee(int Id, string Name, int Age, int Height, int Weight, Trainer trainer);
-        void Delete(int Id);
+        Task<List<Trainee>> GetAllTrainee();
+        Task<Trainee> GetTraineeById(int Id, CancellationToken cancellationToken);
+        Task<Trainee> AddTrainee(Trainee trainee);
+        Task<Trainee> UpdateTrainee(Trainee trainee);
+        Task Delete(int Id, CancellationToken cancellationToken);
     }
 }

@@ -16,11 +16,11 @@ namespace GymAPI.Controllers
 
         public TraineeController(ITraineeRepository traineeRepository)
         {
-            _traineeRepository = traineeRepository;
+            _traineeRepository=traineeRepository;
         }
 
 
-        [HttpGet]
+       [HttpGet]
         public ActionResult<IEnumerable<Trainee>> Get()
         {
             var Trainee = _traineeRepository.GetAllTrainee();
@@ -36,16 +36,16 @@ namespace GymAPI.Controllers
 
         // POST api/<TraineeController>
         [HttpPost]
-        public Trainee Post(string name, int Age, int Weight, int Height, int trainer_id)
+        public Trainee Post(string name, int Age,int Weight,int Height,Trainer trainer)
         {
-            return _traineeRepository.AddTrainee(name, Age, Weight, Height, trainer_id);
+            return _traineeRepository.AddTrainee(name, Age,Weight,Height,trainer);
         }
 
         // PUT api/<TraineeController>/5
         [HttpPut("{id}")]
-        public Trainee Put(int id, string name, int Age, int Weight, int Height, int trainer_id)
+        public Trainee Put(int id, string name, int Age,int Weight,int Height,Trainer trainer)
         {
-            return _traineeRepository.UpdateTrainee(id, name, Age, Weight, Height, trainer_id);
+            return _traineeRepository.UpdateTrainee(id, name, Age,Weight,Height,trainer);
         }
 
         // DELETE api/<TraineeController>/5

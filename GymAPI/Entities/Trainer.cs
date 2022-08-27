@@ -17,7 +17,7 @@ namespace GymAPI.Models
         public Trainer(string name, int time_experience)
         {
             Name = name;
-            Time_experience = time_experience;
+           Time_experience = time_experience;
         }
         public void Update( int time_experience)
         {

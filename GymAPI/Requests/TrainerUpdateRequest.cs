@@ -1,4 +1,4 @@
 namespace GymAPI.Requests
 {
-    public record TraineeUpdateRequest(int time_experience);
+    public record TrainerUpdateRequest(int time_experience);
 }

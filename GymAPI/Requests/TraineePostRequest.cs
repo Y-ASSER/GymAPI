@@ -1,4 +1,6 @@
-﻿namespace GymAPI.Requests
+﻿using GymAPI.Models;
+
+namespace GymAPI.Requests
 {
-    public record TraineePostRequest(string Name, int Age, int Height, int Weight, int trainer_id);
+    public record TraineePostRequest(string Name, int Age, int Height, int Weight,Trainer trainer );
 }
