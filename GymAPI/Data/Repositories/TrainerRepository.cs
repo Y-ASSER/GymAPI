@@ -23,14 +23,16 @@ namespace GymAPI.Data
         }
 
 
-        public async Task Delete(int Id, CancellationToken cancellationToken)
+        public async Task Delete(int Id)
         {
-             _trainer.Remove(await _trainer.FindAsync(new object?[] { Id }, cancellationToken: cancellationToken));
+            var trainerToRemove = await _trainer.FirstOrDefaultAsync<Trainer>(p => p.Id == Id);
+            if (trainerToRemove != null)
+                _trainer.Remove(trainerToRemove);
         }
 
         public async Task<List<Trainer>> GetAllTrainers() => await _trainer.ToListAsync();
 
-        public async Task<Trainer> GetTrainerById(int Id, CancellationToken cancellationToken) => await _trainer.FindAsync(new object?[] { Id }, cancellationToken: cancellationToken);
+        public async Task<Trainer> GetTrainerById(int Id) => await _trainer.FirstOrDefaultAsync(a => a.Id == Id);
 
         public async Task<Trainer> UpdateTrainer(Trainer trainer)
         {

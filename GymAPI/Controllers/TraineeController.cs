@@ -29,21 +29,21 @@ namespace GymAPI.Controllers
 
         // GET api/<TraineeController>/5
         [HttpGet("{id}")]
-        public Trainee Get(int id)
+        public Task<Trainee> Get(int id)
         {
             return _traineeRepository.GetTraineeById(id);
         }
 
         // POST api/<TraineeController>
         [HttpPost]
-        public Trainee Post(Trainee trainee)
+        public Task<Trainee> Post(Trainee trainee)
         {
             return _traineeRepository.AddTrainee(trainee);
         }
 
         // PUT api/<TraineeController>/5
         [HttpPut("{id}")]
-        public Trainee Put(Trainee trainee)
+        public Task<Trainee> Put(Trainee trainee)
         {
             return _traineeRepository.UpdateTrainee(trainee);
         }
