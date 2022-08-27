@@ -12,11 +12,11 @@ namespace GymAPI.Controllers
 
     public class TraineeController : ControllerBase
     {
-        private readonly ITraineeRepository_traineeRepository;
+        private readonly ITraineeRepository _traineeRepository;
 
         public TraineeController(ITraineeRepository traineeRepository)
         {
-            _traineeRepository=traineeRepository;
+            _traineeRepository = traineeRepository;
         }
 
 
@@ -36,16 +36,16 @@ namespace GymAPI.Controllers
 
         // POST api/<TraineeController>
         [HttpPost]
-        public Trainee Post(string name, int Age,int Weight,int Height,Trainer trainer)
+        public Trainee Post(Trainee trainee)
         {
-            return _traineeRepository.AddTrainee(name, Age,Weight,Height,trainer);
+            return _traineeRepository.AddTrainee(trainee);
         }
 
         // PUT api/<TraineeController>/5
         [HttpPut("{id}")]
-        public Trainee Put(int id, string name, int Age,int Weight,int Height,Trainer trainer)
+        public Trainee Put(Trainee trainee)
         {
-            return _traineeRepository.UpdateTrainee(id, name, Age,Weight,Height,trainer);
+            return _traineeRepository.UpdateTrainee(trainee);
         }
 
         // DELETE api/<TraineeController>/5

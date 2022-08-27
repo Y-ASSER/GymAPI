@@ -1,4 +1,4 @@
- GymAPI.Data;
+using GymAPI.Data;
 using GymAPI.Models;
 using GymAPI.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -12,18 +12,18 @@ namespace GymAPI.Controllers
 
     public class TrainerController : ControllerBase
     {
-        private readonly ITrainerRepository_trainerRepository;
+        private readonly ITrainerRepository _trainerRepository;
 
         public TrainerController(ITrainerRepository trainerRepository)
         {
-            _trainerRepository=trainerRepository;
+            _trainerRepository = trainerRepository;
         }
 
 
        [HttpGet]
         public ActionResult<IEnumerable<Trainer>> Get()
         {
-            var Trainer = _trainerRepository.GetAllTrainer();
+            var Trainer = _trainerRepository.GetAllTrainers();
             return Ok(Trainer);
         }
 
@@ -31,26 +31,26 @@ namespace GymAPI.Controllers
         [HttpGet("{id}")]
         public Trainer Get(int Id)
         {
-            return _trainerRepository.GetTrainerById(Id);
+            return  _trainerRepository.GetTrainerById(Id);
         }
 
         // POST api/<TrainerController>
         [HttpPost]
-        public Trainer Post(string name,int Time_experience)
+        public Trainer Post(Trainer trainer)
         {
-            return _trainerRepository.AddTrainer(name, Time_experience);
+            return _trainerRepository.AddTrainer(trainer);
         }
 
         // PUT api/<TrainerController>/5
         [HttpPut("{Id}")]
-        public Trainer Put(int Id, string name,int Time_experience)
+        public Trainer Put(Trainer trainer)
         {
-            return _trainerRepository.UpdateTrainer(Id, name, Time_experience);
+            return _trainerRepository.UpdateTrainer(trainer);
         }
 
         // DELETE api/<TrainerController>/5
         [HttpDelete("{Id}")]
-        public voId Delete(int Id)
+        public void Delete(int Id)
         {
             _trainerRepository.Delete(Id);
         }
