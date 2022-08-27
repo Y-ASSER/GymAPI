@@ -17,6 +17,7 @@ namespace GymAPI.Controllers
         public TraineeController(ITraineeRepository traineeRepository)
         {
             _traineeRepository = traineeRepository;
+            //
         }
 
 
