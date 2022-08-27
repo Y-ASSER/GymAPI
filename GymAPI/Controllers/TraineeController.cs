@@ -12,7 +12,7 @@ namespace GymAPI.Controllers
 
     public class TraineeController : ControllerBase
     {
-        private readonly ITraineeRepository _traineeRepository;
+        private readonly ITraineeRepository_traineeRepository;
 
         public TraineeController(ITraineeRepository traineeRepository)
         {
